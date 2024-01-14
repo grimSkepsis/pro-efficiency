@@ -23,6 +23,7 @@ function Attributes({ attributes, onAttributesChange }: AttributesProps) {
       {Object.entries(attributes).map(([name, value]) => (
         <Grid item xs={12} key={name}>
           <TextField
+            type="number"
             label={name}
             value={value}
             variant="outlined"
