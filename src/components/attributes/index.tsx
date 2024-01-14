@@ -1,12 +1,23 @@
-import React from "react";
+"use client";
+import React, { ChangeEvent } from "react";
 import { Grid, TextField } from "@mui/material";
 import { PlayerAttributes } from "./types";
 
 type AttributesProps = {
   attributes: PlayerAttributes;
+  onAttributesChange: (newAttributes: PlayerAttributes) => void;
 };
 
-function Attributes({ attributes }: AttributesProps) {
+function Attributes({ attributes, onAttributesChange }: AttributesProps) {
+  const handleAttributeChange =
+    (attributeName: string) => (event: ChangeEvent<HTMLInputElement>) => {
+      const newValue = Number(event.target.value);
+      onAttributesChange({
+        ...attributes,
+        [attributeName]: newValue,
+      });
+    };
+
   return (
     <Grid container direction="column" spacing={2}>
       {Object.entries(attributes).map(([name, value]) => (
@@ -16,7 +27,7 @@ function Attributes({ attributes }: AttributesProps) {
             value={value}
             variant="outlined"
             fullWidth
-            disabled
+            onChange={handleAttributeChange(name)}
           />
         </Grid>
       ))}

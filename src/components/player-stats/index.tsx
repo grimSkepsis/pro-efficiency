@@ -1,26 +1,34 @@
-import React from "react";
-import { Box, Grid } from "@mui/material";
-import Attributes from "../attributes";
-import Skills from "../skills";
+"use client";
+import React, { useState } from "react";
+import { Grid, Box } from "@mui/material";
 import { Skill } from "../skills/types";
 import { PlayerAttributes } from "../attributes/types";
+import Attributes from "../attributes";
+import Skills from "../skills";
 
-interface PlayerStatsProps {
+type PlayerStatsProps = {
   skills: Skill[];
-  attributes: PlayerAttributes;
+  initialAttributes: PlayerAttributes;
   level: number;
-}
+};
 
-const MAX_WIDTH = "15rem";
+function PlayerStats({ skills, initialAttributes, level }: PlayerStatsProps) {
+  const [attributes, setAttributes] = useState(initialAttributes);
 
-function PlayerStats({ skills, attributes, level }: PlayerStatsProps) {
+  const handleAttributesChange = (newAttributes: PlayerAttributes) => {
+    setAttributes(newAttributes);
+  };
+
   return (
     <Box pt={2}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} style={{ maxWidth: "5rem" }}>
-          <Attributes attributes={attributes} />
+          <Attributes
+            attributes={attributes}
+            onAttributesChange={handleAttributesChange}
+          />
         </Grid>
-        <Grid item xs={12} sm={6} style={{ maxWidth: MAX_WIDTH }}>
+        <Grid item xs={12} sm={6} style={{ maxWidth: "15rem" }}>
           <Skills skills={skills} attributes={attributes} level={level} />
         </Grid>
       </Grid>

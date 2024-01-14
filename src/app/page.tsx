@@ -9,7 +9,7 @@ export default function Home() {
       <PlayerStats
         level={1}
         skills={TEST_PLAYER_SKILLS}
-        attributes={{
+        initialAttributes={{
           STR: 18,
           DEX: 14,
           CON: 12,
