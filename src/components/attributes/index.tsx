@@ -11,14 +11,7 @@ function createAttribute(name: string) {
 }
 
 function Attributes() {
-  const attributes = [
-    "Strength",
-    "Dexterity",
-    "Constitution",
-    "Intelligence",
-    "Wisdom",
-    "Charisma",
-  ];
+  const attributes = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
   return (
     <Grid container spacing={2}>
       {attributes.map(createAttribute)}
