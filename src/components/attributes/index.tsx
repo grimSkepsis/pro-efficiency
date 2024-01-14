@@ -1,20 +1,25 @@
 import React from "react";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
+import { Grid, TextField } from "@mui/material";
+import { PlayerAttributes } from "./types";
 
-function createAttribute(name: string) {
-  return (
-    <Grid item xs={2}>
-      <TextField label={name} variant="outlined" />
-    </Grid>
-  );
-}
+type AttributesProps = {
+  attributes: PlayerAttributes;
+};
 
-function Attributes() {
-  const attributes = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+function Attributes({ attributes }: AttributesProps) {
   return (
-    <Grid container spacing={2}>
-      {attributes.map(createAttribute)}
+    <Grid container direction="column" spacing={2}>
+      {Object.entries(attributes).map(([name, value]) => (
+        <Grid item xs={12} key={name}>
+          <TextField
+            label={name}
+            value={value}
+            variant="outlined"
+            fullWidth
+            disabled
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 }

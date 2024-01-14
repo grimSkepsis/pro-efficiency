@@ -1,12 +1,12 @@
 import Attributes from "@/components/attributes";
+import PlayerStats from "@/components/player-stats";
 import Skills from "@/components/skills";
 import { TEST_PLAYER_SKILLS } from "@/util/test-data";
 
 export default function Home() {
   return (
     <main>
-      <Attributes />
-      <Skills
+      <PlayerStats
         level={1}
         skills={TEST_PLAYER_SKILLS}
         attributes={{
