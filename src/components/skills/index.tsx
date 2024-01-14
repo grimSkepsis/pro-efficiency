@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import { Skill } from "./types";
-import { PlayerAttributes } from "../attributes/types";
-import { calculateModifier } from "./util";
+import { Attribute, PlayerAttributes } from "../attributes/types";
+import { calculateAttributeModifier, calculateModifier } from "./util";
 
 type SkillsProps = {
   skills: Skill[];
@@ -25,7 +25,7 @@ function createSkill(
   );
 }
 
-const attributeOrder = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+const attributeOrder: Attribute[] = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
 function Skills({ skills, attributes, level }: SkillsProps) {
   const groupedSkills = skills.reduce((groups, skill) => {
@@ -45,11 +45,14 @@ function Skills({ skills, attributes, level }: SkillsProps) {
     <Grid container direction="column" spacing={2}>
       {attributeOrder.map((attribute) => {
         const skills = groupedSkills[attribute];
-        if (!skills) return null;
+        // if (!skills) return null;
+        const modifier = calculateAttributeModifier(attributes[attribute]);
         return (
           <Grid item xs={12} key={attribute}>
-            <Typography variant="h6">{attribute}</Typography>
-            {skills.map((skill) => createSkill(skill, attributes, level))}
+            <Typography variant="h6">
+              {attribute} ({modifier})
+            </Typography>
+            {skills?.map((skill) => createSkill(skill, attributes, level))}
           </Grid>
         );
       })}

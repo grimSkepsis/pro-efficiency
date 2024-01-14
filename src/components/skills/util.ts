@@ -7,7 +7,7 @@ export function calculateModifier(
   playerLevel: number
 ): number {
   const attributeValue = attributes[skill.attribute];
-  const attributeModifier = Math.floor((attributeValue - 10) / 2);
+  const attributeModifier = calculateAttributeModifier(attributeValue);
   let proficiencyBonus: number;
 
   switch (skill.proficiency) {
@@ -31,4 +31,8 @@ export function calculateModifier(
   }
 
   return attributeModifier + proficiencyBonus;
+}
+
+export function calculateAttributeModifier(attributeValue: number): number {
+  return Math.floor((attributeValue - 10) / 2);
 }
