@@ -7,16 +7,26 @@ import Attributes from "../attributes";
 import Skills from "../skills";
 
 type PlayerStatsProps = {
-  skills: Skill[];
+  initialSkills: Skill[];
   initialAttributes: PlayerAttributes;
   level: number;
 };
 
-function PlayerStats({ skills, initialAttributes, level }: PlayerStatsProps) {
+function PlayerStats({
+  initialSkills,
+  initialAttributes,
+  level,
+}: PlayerStatsProps) {
   const [attributes, setAttributes] = useState(initialAttributes);
+  const [skills, setSkills] = useState(initialSkills);
 
   const handleAttributesChange = (newAttributes: PlayerAttributes) => {
     setAttributes(newAttributes);
+  };
+
+  const handleSkillsChange = (newSkills: Skill[]) => {
+    console.log(newSkills);
+    setSkills(newSkills);
   };
 
   return (
@@ -29,7 +39,12 @@ function PlayerStats({ skills, initialAttributes, level }: PlayerStatsProps) {
           />
         </Grid>
         <Grid item xs={12} sm={6} style={{ maxWidth: "15rem" }}>
-          <Skills skills={skills} attributes={attributes} level={level} />
+          <Skills
+            skills={skills}
+            attributes={attributes}
+            level={level}
+            onSkillsChange={handleSkillsChange}
+          />
         </Grid>
       </Grid>
     </Box>

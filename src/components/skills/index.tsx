@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import { Skill } from "./types";
+import { Proficiency, Skill } from "./types";
 import { Attribute, PlayerAttributes } from "../attributes/types";
 import { calculateAttributeModifier, calculateModifier } from "./util";
 
@@ -7,17 +7,20 @@ type SkillsProps = {
   skills: Skill[];
   attributes: PlayerAttributes;
   level: number;
+  onSkillsChange: (newSkills: Skill[]) => void;
 };
 
 function createSkill(
   skill: Skill,
   attributes: PlayerAttributes,
-  level: number
+  level: number,
+  onSkillClick: (name: string) => void,
+  idx: number
 ) {
   const value = calculateModifier(skill, attributes, level);
   return (
     <Grid item xs={12} key={skill.name}>
-      <Typography variant="body1">
+      <Typography variant="body1" onClick={() => onSkillClick(skill.name)}>
         {skill.name}: {value}{" "}
         {skill.proficiency !== "Untrained" ? `(${skill.proficiency})` : ""}
       </Typography>
@@ -26,8 +29,15 @@ function createSkill(
 }
 
 const attributeOrder: Attribute[] = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+const proficiencyLevels: Proficiency[] = [
+  "Untrained",
+  "Trained",
+  "Expert",
+  "Master",
+  "Legendary",
+];
 
-function Skills({ skills, attributes, level }: SkillsProps) {
+function Skills({ skills, attributes, level, onSkillsChange }: SkillsProps) {
   const groupedSkills = skills.reduce((groups, skill) => {
     const key = skill.attribute;
     if (!groups[key]) {
@@ -41,6 +51,21 @@ function Skills({ skills, attributes, level }: SkillsProps) {
     groupedSkills[attribute].sort((a, b) => a.name.localeCompare(b.name));
   }
 
+  function handleSkillClick(name: string) {
+    const newSkills = [...skills];
+    const skillToUpdate = newSkills.find((skill) => skill.name === name);
+    if (!skillToUpdate) return;
+    const indexToUpdate = newSkills.indexOf(skillToUpdate);
+    const currentProficiencyIndex = proficiencyLevels.indexOf(
+      skillToUpdate.proficiency
+    );
+    const nextProficiencyIndex =
+      (currentProficiencyIndex + 1) % proficiencyLevels.length;
+    newSkills[indexToUpdate].proficiency =
+      proficiencyLevels[nextProficiencyIndex];
+    onSkillsChange(newSkills);
+  }
+
   return (
     <Grid container direction="column" spacing={2}>
       {attributeOrder.map((attribute) => {
@@ -52,7 +77,9 @@ function Skills({ skills, attributes, level }: SkillsProps) {
             <Typography variant="h6">
               {attribute} ({modifier})
             </Typography>
-            {skills?.map((skill) => createSkill(skill, attributes, level))}
+            {skills?.map((skill, idx) =>
+              createSkill(skill, attributes, level, handleSkillClick, idx)
+            )}
           </Grid>
         );
       })}
