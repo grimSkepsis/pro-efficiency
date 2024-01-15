@@ -1,4 +1,4 @@
-import { PlayerSkillProficiency, Skill } from "@/components/skills/types";
+import { PlayerSkillProficiency, Skill } from "@/services/player/types";
 
 export const TEST_PLAYER_SKILLS: Skill[] = [
   { name: "Acrobatics", attribute: "DEX", proficiency: "Trained" },

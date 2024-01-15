@@ -1,22 +1,14 @@
-import Attributes from "@/components/attributes";
 import PlayerStats from "@/components/player-stats";
-import Skills from "@/components/skills";
-import { TEST_PLAYER_SKILLS } from "@/util/test-data";
+import { getPlayerStats } from "@/services/player";
 
-export default function Home() {
+export default async function Home() {
+  const playerData = await getPlayerStats();
   return (
     <main>
       <PlayerStats
         level={1}
-        initialSkills={TEST_PLAYER_SKILLS}
-        initialAttributes={{
-          STR: 18,
-          DEX: 14,
-          CON: 12,
-          INT: 10,
-          WIS: 8,
-          CHA: 16,
-        }}
+        initialSkills={playerData.baseSkills}
+        initialAttributes={playerData.attributes}
       />
     </main>
   );

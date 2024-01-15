@@ -1,7 +1,7 @@
 "use client";
 import React, { ChangeEvent } from "react";
 import { Grid, TextField } from "@mui/material";
-import { PlayerAttributes } from "./types";
+import { PlayerAttributes } from "../../services/player/types";
 
 type AttributesProps = {
   attributes: PlayerAttributes;

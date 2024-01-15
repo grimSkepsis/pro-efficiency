@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Grid, Box } from "@mui/material";
-import { Skill } from "../skills/types";
-import { PlayerAttributes } from "../attributes/types";
+import { Skill } from "../../services/player/types";
+import { PlayerAttributes } from "../../services/player/types";
 import Attributes from "../attributes";
 import Skills from "../skills";
 
@@ -25,7 +25,6 @@ function PlayerStats({
   };
 
   const handleSkillsChange = (newSkills: Skill[]) => {
-    console.log(newSkills);
     setSkills(newSkills);
   };
 
