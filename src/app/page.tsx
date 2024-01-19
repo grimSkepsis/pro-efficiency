@@ -1,15 +1,14 @@
-import PlayerStats from "@/components/player-stats";
+import { CharacterSheet } from "@/components/character-sheet";
 import { getPlayerStats } from "@/services/player";
+import { Button } from "@mui/material";
 
 export default async function Home() {
   const playerData = await getPlayerStats();
+
   return (
     <main>
-      <PlayerStats
-        level={1}
-        initialSkills={playerData.baseSkills}
-        initialAttributes={playerData.attributes}
-      />
+      {" "}
+      <CharacterSheet playerData={playerData} />{" "}
     </main>
   );
 }

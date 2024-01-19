@@ -1,12 +1,12 @@
-import fs from "fs";
-import path from "path";
+import { API_ROUTES, createInternalRoute } from "@/routes";
 import { PlayerData } from "./types";
+import axios from "axios";
 
 export async function getPlayerStats(): Promise<PlayerData> {
-  const filePath = path.join(process.cwd(), "public", "player-stats.json");
-  const fileContents = await fs.promises.readFile(filePath, "utf8");
+  const resp = await axios.get(createInternalRoute(API_ROUTES.PLAYER));
+  return resp.data.playerData;
+}
 
-  // Parse the file contents to a JavaScript object
-  const playerData = await JSON.parse(fileContents);
-  return playerData;
+export async function savePlayerStats(playerData: PlayerData): Promise<void> {
+  return await axios.post(createInternalRoute(API_ROUTES.PLAYER), playerData);
 }

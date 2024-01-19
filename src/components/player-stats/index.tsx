@@ -1,5 +1,4 @@
 "use client";
-import React, { useState } from "react";
 import { Grid, Box } from "@mui/material";
 import { Skill } from "../../services/player/types";
 import { PlayerAttributes } from "../../services/player/types";
@@ -7,34 +6,27 @@ import Attributes from "../attributes";
 import Skills from "../skills";
 
 type PlayerStatsProps = {
-  initialSkills: Skill[];
-  initialAttributes: PlayerAttributes;
+  skills: Skill[];
+  attributes: PlayerAttributes;
   level: number;
+  onAttributesChange: (newAttributes: PlayerAttributes) => void;
+  onSkillsChange: (newSkills: Skill[]) => void;
 };
 
 function PlayerStats({
-  initialSkills,
-  initialAttributes,
+  skills,
+  attributes,
   level,
+  onAttributesChange,
+  onSkillsChange,
 }: PlayerStatsProps) {
-  const [attributes, setAttributes] = useState(initialAttributes);
-  const [skills, setSkills] = useState(initialSkills);
-
-  const handleAttributesChange = (newAttributes: PlayerAttributes) => {
-    setAttributes(newAttributes);
-  };
-
-  const handleSkillsChange = (newSkills: Skill[]) => {
-    setSkills(newSkills);
-  };
-
   return (
     <Box pt={2}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} style={{ maxWidth: "5rem" }}>
           <Attributes
             attributes={attributes}
-            onAttributesChange={handleAttributesChange}
+            onAttributesChange={onAttributesChange}
           />
         </Grid>
         <Grid item xs={12} sm={6} style={{ maxWidth: "15rem" }}>
@@ -42,7 +34,7 @@ function PlayerStats({
             skills={skills}
             attributes={attributes}
             level={level}
-            onSkillsChange={handleSkillsChange}
+            onSkillsChange={onSkillsChange}
           />
         </Grid>
       </Grid>

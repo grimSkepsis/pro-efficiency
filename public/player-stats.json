@@ -5,34 +5,94 @@
   "background": "Soldier",
   "class": "Warrior",
   "attributes": {
-    "STR": 15,
-    "DEX": 14,
+    "STR": 10,
+    "DEX": 10,
     "CON": 13,
     "INT": 12,
     "WIS": 10,
     "CHA": 8
   },
   "baseSkills": [
-    { "name": "Acrobatics", "attribute": "DEX", "proficiency": "Trained" },
-    { "name": "Arcana", "attribute": "INT", "proficiency": "Untrained" },
-    { "name": "Athletics", "attribute": "STR", "proficiency": "Expert" },
-    { "name": "Crafting", "attribute": "INT", "proficiency": "Trained" },
-    { "name": "Deception", "attribute": "CHA", "proficiency": "Master" },
-    { "name": "Diplomacy", "attribute": "CHA", "proficiency": "Trained" },
+    {
+      "name": "Acrobatics",
+      "attribute": "DEX",
+      "proficiency": "Trained"
+    },
+    {
+      "name": "Arcana",
+      "attribute": "INT",
+      "proficiency": "Untrained"
+    },
+    {
+      "name": "Athletics",
+      "attribute": "STR",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Crafting",
+      "attribute": "INT",
+      "proficiency": "Trained"
+    },
+    {
+      "name": "Deception",
+      "attribute": "CHA",
+      "proficiency": "Master"
+    },
+    {
+      "name": "Diplomacy",
+      "attribute": "CHA",
+      "proficiency": "Trained"
+    },
     {
       "name": "Intimidation",
       "attribute": "CHA",
       "proficiency": "Untrained"
     },
-    { "name": "Medicine", "attribute": "WIS", "proficiency": "Trained" },
-    { "name": "Nature", "attribute": "WIS", "proficiency": "Expert" },
-    { "name": "Occultism", "attribute": "INT", "proficiency": "Untrained" },
-    { "name": "Performance", "attribute": "CHA", "proficiency": "Trained" },
-    { "name": "Religion", "attribute": "WIS", "proficiency": "Master" },
-    { "name": "Society", "attribute": "INT", "proficiency": "Trained" },
-    { "name": "Stealth", "attribute": "DEX", "proficiency": "Untrained" },
-    { "name": "Survival", "attribute": "WIS", "proficiency": "Trained" },
-    { "name": "Thievery", "attribute": "DEX", "proficiency": "Expert" }
+    {
+      "name": "Medicine",
+      "attribute": "WIS",
+      "proficiency": "Trained"
+    },
+    {
+      "name": "Nature",
+      "attribute": "WIS",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "Occultism",
+      "attribute": "INT",
+      "proficiency": "Untrained"
+    },
+    {
+      "name": "Performance",
+      "attribute": "CHA",
+      "proficiency": "Trained"
+    },
+    {
+      "name": "Religion",
+      "attribute": "WIS",
+      "proficiency": "Master"
+    },
+    {
+      "name": "Society",
+      "attribute": "INT",
+      "proficiency": "Trained"
+    },
+    {
+      "name": "Stealth",
+      "attribute": "DEX",
+      "proficiency": "Untrained"
+    },
+    {
+      "name": "Survival",
+      "attribute": "WIS",
+      "proficiency": "Trained"
+    },
+    {
+      "name": "Thievery",
+      "attribute": "DEX",
+      "proficiency": "Expert"
+    }
   ],
   "classSkills": [
     {
@@ -41,31 +101,26 @@
       "proficiency": "Trained"
     }
   ],
-  "initiative": {
-    "name": "Initiative",
-    "attribute": "DEX",
-    "proficiency": "Untrained"
-  },
   "perception": {
     "name": "Perception",
     "attribute": "WIS",
     "proficiency": "Trained"
   },
-  "saves": {
-    "fortitude": {
+  "saves": [
+    {
       "name": "Fortitude",
       "attribute": "CON",
       "proficiency": "Trained"
     },
-    "reflex": {
+    {
       "name": "Reflex",
       "attribute": "DEX",
       "proficiency": "Untrained"
     },
-    "will": {
+    {
       "name": "Will",
       "attribute": "WIS",
       "proficiency": "Trained"
     }
-  }
+  ]
 }

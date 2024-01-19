@@ -13,13 +13,8 @@ export type PlayerData = {
   attributes: PlayerAttributes;
   baseSkills: Skill[];
   classSkills: Skill[];
-  initiative: Skill;
   perception: Skill;
-  saves: {
-    fortitude: Skill;
-    reflex: Skill;
-    will: Skill;
-  };
+  saves: Skill[];
 };
 
 export type PlayerSkillProficiency = {
