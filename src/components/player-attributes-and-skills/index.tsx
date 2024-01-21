@@ -39,12 +39,16 @@ function PlayerAttributesAndSkills() {
 
   const { baseSkills, attributes, level } = playerData as PlayerData;
 
+  function onToggleEdit() {
+    setIsEditable(!editable);
+  }
+
   return (
     <Box pt={2}>
       <Box>
         <Typography variant="h6">
           Atttributes and Skills{" "}
-          <IconButton onClick={() => setIsEditable(!editable)}>
+          <IconButton onClick={onToggleEdit}>
             {editable ? <Cancel /> : <Edit />}
           </IconButton>
         </Typography>

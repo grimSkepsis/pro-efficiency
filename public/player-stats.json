@@ -5,7 +5,7 @@
   "background": "Soldier",
   "class": "Warrior",
   "attributes": {
-    "STR": 16,
+    "STR": 18,
     "DEX": 10,
     "CON": 13,
     "INT": 12,
@@ -26,7 +26,7 @@
     {
       "name": "Athletics",
       "attribute": "STR",
-      "proficiency": "Trained"
+      "proficiency": "Untrained"
     },
     {
       "name": "Crafting",
