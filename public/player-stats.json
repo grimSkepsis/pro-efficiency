@@ -16,17 +16,17 @@
     {
       "name": "Acrobatics",
       "attribute": "DEX",
-      "proficiency": "Trained"
+      "proficiency": "Untrained"
     },
     {
       "name": "Arcana",
       "attribute": "INT",
-      "proficiency": "Untrained"
+      "proficiency": "Trained"
     },
     {
       "name": "Athletics",
       "attribute": "STR",
-      "proficiency": "Expert"
+      "proficiency": "Untrained"
     },
     {
       "name": "Crafting",
@@ -91,7 +91,7 @@
     {
       "name": "Thievery",
       "attribute": "DEX",
-      "proficiency": "Expert"
+      "proficiency": "Legendary"
     }
   ],
   "classSkills": [

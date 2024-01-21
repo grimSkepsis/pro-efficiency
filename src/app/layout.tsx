@@ -2,6 +2,7 @@ import ThemeRegistry from "@/components/theme-layout";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { QueryProvider } from "./query-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AppRouterCacheProvider>
-        <ThemeRegistry options={{ key: "mui-theme" }}>
-          <body className={inter.className}>{children}</body>
-        </ThemeRegistry>
+        <QueryProvider>
+          <ThemeRegistry options={{ key: "mui-theme" }}>
+            <body className={inter.className}>{children}</body>
+          </ThemeRegistry>
+        </QueryProvider>
       </AppRouterCacheProvider>
     </html>
   );

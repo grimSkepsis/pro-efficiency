@@ -1,14 +1,12 @@
 import { CharacterSheet } from "@/components/character-sheet";
-import { getPlayerStats } from "@/services/player";
-import { Button } from "@mui/material";
+import { getPlayerData } from "@/services/player";
 
 export default async function Home() {
-  const playerData = await getPlayerStats();
+  const playerData = await getPlayerData();
 
   return (
     <main>
-      {" "}
-      <CharacterSheet playerData={playerData} />{" "}
+      <CharacterSheet initialPlayerData={playerData} />
     </main>
   );
 }

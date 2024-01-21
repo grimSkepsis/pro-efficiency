@@ -2,25 +2,37 @@
 import { useState } from "react";
 import PlayerStats from "../player-stats";
 import { PlayerAttributes, PlayerData, Skill } from "@/services/player/types";
-import { savePlayerStats } from "@/services/player";
+import { getPlayerData, savePlayerData } from "@/services/player";
 import { Typography } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 type CharacterSheetProps = {
-  playerData: PlayerData;
+  initialPlayerData: PlayerData;
 };
-export function CharacterSheet({ playerData }: CharacterSheetProps) {
-  const [currPlayerData, setCurrPlayerData] = useState(playerData);
+export function CharacterSheet({ initialPlayerData }: CharacterSheetProps) {
+  const queryClient = useQueryClient();
+  const { data: playerData = initialPlayerData } = useQuery(
+    "playerData",
+    getPlayerData,
+    {
+      initialData: initialPlayerData,
+    }
+  );
+
+  const { mutateAsync: updatePlayerData } = useMutation(savePlayerData, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("playerData");
+    },
+  });
 
   async function handleAttributesChange(newAttributes: PlayerAttributes) {
-    const newPlayerData = { ...currPlayerData, attributes: newAttributes };
-    setCurrPlayerData(newPlayerData);
-    await savePlayerStats(newPlayerData);
+    const newPlayerData = { ...playerData, attributes: newAttributes };
+    await updatePlayerData(newPlayerData);
   }
 
   async function handleSkillsChange(newSkills: Skill[]) {
-    const newPlayerData = { ...currPlayerData, baseSkills: newSkills };
-    setCurrPlayerData(newPlayerData);
-    await savePlayerStats(newPlayerData);
+    const newPlayerData = { ...playerData, baseSkills: newSkills };
+    await updatePlayerData(newPlayerData);
   }
 
   return (
@@ -28,8 +40,8 @@ export function CharacterSheet({ playerData }: CharacterSheetProps) {
       <Typography variant="h1">{playerData.name}</Typography>
       <PlayerStats
         level={1}
-        skills={currPlayerData.baseSkills}
-        attributes={currPlayerData.attributes}
+        skills={playerData.baseSkills}
+        attributes={playerData.attributes}
         onAttributesChange={handleAttributesChange}
         onSkillsChange={handleSkillsChange}
       />
