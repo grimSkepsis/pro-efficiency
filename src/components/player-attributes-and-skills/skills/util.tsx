@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
-import { PlayerAttributes } from "../../services/player/types";
-import { Skill } from "../../services/player/types";
+import { PlayerAttributes } from "../../../services/player/types";
+import { Skill } from "../../../services/player/types";
 
 export function calculateModifier(
   skill: Skill,
@@ -42,11 +42,17 @@ export function createSkill(
   skill: Skill,
   attributes: PlayerAttributes,
   level: number,
-  onSkillClick: (name: string) => void
+  onSkillClick: (name: string) => void,
+  editable: boolean
 ) {
   const value = calculateModifier(skill, attributes, level);
   return (
-    <Grid item xs={12} key={skill.name}>
+    <Grid
+      item
+      xs={12}
+      key={skill.name}
+      style={{ cursor: editable ? "pointer" : "not-allowed" }}
+    >
       <Typography variant="body1" onClick={() => onSkillClick(skill.name)}>
         {skill.name}: {value}{" "}
         {skill.proficiency !== "Untrained" ? `(${skill.proficiency})` : ""}

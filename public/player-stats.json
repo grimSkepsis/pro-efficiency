@@ -5,7 +5,7 @@
   "background": "Soldier",
   "class": "Warrior",
   "attributes": {
-    "STR": 14,
+    "STR": 16,
     "DEX": 10,
     "CON": 13,
     "INT": 12,
@@ -16,17 +16,17 @@
     {
       "name": "Acrobatics",
       "attribute": "DEX",
-      "proficiency": "Untrained"
+      "proficiency": "Master"
     },
     {
       "name": "Arcana",
       "attribute": "INT",
-      "proficiency": "Trained"
+      "proficiency": "Expert"
     },
     {
       "name": "Athletics",
       "attribute": "STR",
-      "proficiency": "Untrained"
+      "proficiency": "Trained"
     },
     {
       "name": "Crafting",
@@ -91,7 +91,7 @@
     {
       "name": "Thievery",
       "attribute": "DEX",
-      "proficiency": "Legendary"
+      "proficiency": "Untrained"
     }
   ],
   "classSkills": [

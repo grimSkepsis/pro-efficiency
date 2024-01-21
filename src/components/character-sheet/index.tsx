@@ -1,10 +1,9 @@
 "use client";
-import { useState } from "react";
-import PlayerStats from "../player-stats";
-import { PlayerAttributes, PlayerData, Skill } from "@/services/player/types";
-import { getPlayerData, savePlayerData } from "@/services/player";
+import PlayerAttributesAndSkills from "../player-attributes-and-skills";
+import { PlayerData } from "@/services/player/types";
+import { getPlayerData } from "@/services/player";
 import { Typography } from "@mui/material";
-import { useMutation, useQuery, useQueryClient } from "react-query";
+import { useQuery } from "react-query";
 
 type CharacterSheetProps = {
   initialPlayerData: PlayerData;
@@ -21,7 +20,7 @@ export function CharacterSheet({ initialPlayerData }: CharacterSheetProps) {
   return (
     <div>
       <Typography variant="h1">{playerData.name}</Typography>
-      <PlayerStats />
+      <PlayerAttributesAndSkills />
     </div>
   );
 }

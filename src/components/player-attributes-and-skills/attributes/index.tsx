@@ -1,14 +1,19 @@
 "use client";
 import React, { ChangeEvent } from "react";
 import { Grid, TextField } from "@mui/material";
-import { PlayerAttributes } from "../../services/player/types";
+import { PlayerAttributes } from "../../../services/player/types";
 
 type AttributesProps = {
   attributes: PlayerAttributes;
   onAttributesChange: (newAttributes: PlayerAttributes) => void;
+  editable?: boolean;
 };
 
-function Attributes({ attributes, onAttributesChange }: AttributesProps) {
+function Attributes({
+  attributes,
+  onAttributesChange,
+  editable = false,
+}: AttributesProps) {
   const handleAttributeChange =
     (attributeName: string) => (event: ChangeEvent<HTMLInputElement>) => {
       const newValue = Number(event.target.value);
@@ -29,6 +34,7 @@ function Attributes({ attributes, onAttributesChange }: AttributesProps) {
             variant="outlined"
             fullWidth
             onChange={handleAttributeChange(name)}
+            disabled={!editable}
           />
         </Grid>
       ))}

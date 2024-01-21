@@ -1,17 +1,25 @@
 import { Grid, Typography } from "@mui/material";
-import { Skill } from "../../services/player/types";
-import { PlayerAttributes } from "../../services/player/types";
+import { Skill } from "../../../services/player/types";
+import { PlayerAttributes } from "../../../services/player/types";
 import { calculateAttributeModifier, createSkill } from "./util";
 import { ATTRIBUTE_ORDER, PROFICIENCY_LEVELS } from "./constants";
+import { useState } from "react";
 
 type SkillsProps = {
   skills: Skill[];
   attributes: PlayerAttributes;
   level: number;
   onSkillsChange: (newSkills: Skill[]) => void;
+  editable?: boolean;
 };
 
-function Skills({ skills, attributes, level, onSkillsChange }: SkillsProps) {
+function Skills({
+  skills,
+  attributes,
+  level,
+  onSkillsChange,
+  editable = false,
+}: SkillsProps) {
   const groupedSkills = skills.reduce((groups, skill) => {
     const key = skill.attribute;
     if (!groups[key]) {
@@ -26,6 +34,7 @@ function Skills({ skills, attributes, level, onSkillsChange }: SkillsProps) {
   }
 
   function handleSkillClick(name: string) {
+    if (!editable) return;
     const newSkills = [...skills];
     const skillToUpdate = newSkills.find((skill) => skill.name === name);
     if (!skillToUpdate) return;
@@ -52,7 +61,7 @@ function Skills({ skills, attributes, level, onSkillsChange }: SkillsProps) {
               {attribute} ({modifier})
             </Typography>
             {skills?.map((skill, idx) =>
-              createSkill(skill, attributes, level, handleSkillClick)
+              createSkill(skill, attributes, level, handleSkillClick, editable)
             )}
           </Grid>
         );

@@ -1,14 +1,17 @@
 "use client";
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, IconButton, Typography } from "@mui/material";
 import { PlayerData, Skill } from "../../services/player/types";
 import { PlayerAttributes } from "../../services/player/types";
-import Attributes from "../attributes";
-import Skills from "../skills";
+import Attributes from "./attributes";
+import Skills from "./skills";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getPlayerData, savePlayerData } from "@/services/player";
+import { useState } from "react";
+import { Cancel, Edit } from "@mui/icons-material";
 
-function PlayerStats() {
+function PlayerAttributesAndSkills() {
   const queryClient = useQueryClient();
+  const [editable, setIsEditable] = useState(false);
 
   const { data: playerData, isLoading } = useQuery("playerData", getPlayerData);
   const { mutateAsync: updatePlayerData } = useMutation(savePlayerData, {
@@ -38,11 +41,20 @@ function PlayerStats() {
 
   return (
     <Box pt={2}>
+      <Box>
+        <Typography variant="h6">
+          Atttributes and Skills{" "}
+          <IconButton onClick={() => setIsEditable(!editable)}>
+            {editable ? <Cancel /> : <Edit />}
+          </IconButton>
+        </Typography>
+      </Box>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} style={{ maxWidth: "5rem" }}>
           <Attributes
             attributes={attributes}
             onAttributesChange={handleAttributesChange}
+            editable={editable}
           />
         </Grid>
         <Grid item xs={12} sm={6} style={{ maxWidth: "15rem" }}>
@@ -51,6 +63,7 @@ function PlayerStats() {
             attributes={attributes}
             level={level}
             onSkillsChange={handleSkillsChange}
+            editable={editable}
           />
         </Grid>
       </Grid>
@@ -58,4 +71,4 @@ function PlayerStats() {
   );
 }
 
-export default PlayerStats;
+export default PlayerAttributesAndSkills;
