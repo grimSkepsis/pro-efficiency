@@ -1,40 +1,56 @@
 "use client";
 import { Grid, Box } from "@mui/material";
-import { Skill } from "../../services/player/types";
+import { PlayerData, Skill } from "../../services/player/types";
 import { PlayerAttributes } from "../../services/player/types";
 import Attributes from "../attributes";
 import Skills from "../skills";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import { getPlayerData, savePlayerData } from "@/services/player";
 
-type PlayerStatsProps = {
-  skills: Skill[];
-  attributes: PlayerAttributes;
-  level: number;
-  onAttributesChange: (newAttributes: PlayerAttributes) => void;
-  onSkillsChange: (newSkills: Skill[]) => void;
-};
+function PlayerStats() {
+  const queryClient = useQueryClient();
 
-function PlayerStats({
-  skills,
-  attributes,
-  level,
-  onAttributesChange,
-  onSkillsChange,
-}: PlayerStatsProps) {
+  const { data: playerData, isLoading } = useQuery("playerData", getPlayerData);
+  const { mutateAsync: updatePlayerData } = useMutation(savePlayerData, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("playerData");
+    },
+  });
+
+  async function handleAttributesChange(newAttributes: PlayerAttributes) {
+    const newPlayerData = {
+      ...playerData,
+      attributes: newAttributes,
+    } as PlayerData;
+    await updatePlayerData(newPlayerData);
+  }
+
+  async function handleSkillsChange(newSkills: Skill[]) {
+    const newPlayerData = {
+      ...playerData,
+      baseSkills: newSkills,
+    } as PlayerData;
+    await updatePlayerData(newPlayerData);
+  }
+  if (isLoading) return <div>Loading...</div>;
+
+  const { baseSkills, attributes, level } = playerData as PlayerData;
+
   return (
     <Box pt={2}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} style={{ maxWidth: "5rem" }}>
           <Attributes
             attributes={attributes}
-            onAttributesChange={onAttributesChange}
+            onAttributesChange={handleAttributesChange}
           />
         </Grid>
         <Grid item xs={12} sm={6} style={{ maxWidth: "15rem" }}>
           <Skills
-            skills={skills}
+            skills={baseSkills}
             attributes={attributes}
             level={level}
-            onSkillsChange={onSkillsChange}
+            onSkillsChange={handleSkillsChange}
           />
         </Grid>
       </Grid>

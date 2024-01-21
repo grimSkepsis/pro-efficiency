@@ -5,7 +5,7 @@
   "background": "Soldier",
   "class": "Warrior",
   "attributes": {
-    "STR": 10,
+    "STR": 14,
     "DEX": 10,
     "CON": 13,
     "INT": 12,
