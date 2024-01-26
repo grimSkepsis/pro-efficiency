@@ -3,20 +3,18 @@ import PlayerAttributesAndSkills from "../player-attributes-and-skills";
 import { PlayerData } from "@/services/player/types";
 import { getPlayerData } from "@/services/player";
 import { Typography } from "@mui/material";
-import { useQuery } from "react-query";
+
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 
 type CharacterSheetProps = {
-  initialPlayerData: PlayerData;
+  //   initialPlayerData: PlayerData;
 };
-export function CharacterSheet({ initialPlayerData }: CharacterSheetProps) {
-  const { data: playerData = initialPlayerData } = useQuery(
-    "playerData",
-    getPlayerData,
-    {
-      initialData: initialPlayerData,
-    }
-  );
+export function CharacterSheet({}: CharacterSheetProps) {
+  const { data: playerData } = useQuery({
+    queryKey: ["playerData"],
+    queryFn: getPlayerData,
+  });
 
   return (
     <div
@@ -42,7 +40,7 @@ export function CharacterSheet({ initialPlayerData }: CharacterSheetProps) {
             />
           </div>
 
-          <Typography variant="h2">{playerData.name}</Typography>
+          <Typography variant="h2">{playerData?.name}</Typography>
         </div>
 
         <PlayerAttributesAndSkills />

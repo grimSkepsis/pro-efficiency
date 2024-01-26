@@ -4,8 +4,12 @@ import { PlayerData, Skill } from "../../services/player/types";
 import { PlayerAttributes } from "../../services/player/types";
 import Attributes from "./attributes";
 import Skills from "./skills";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { getPlayerData, savePlayerData } from "@/services/player";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  PLAYER_DATA_QUERY_KEY,
+  getPlayerData,
+  savePlayerData,
+} from "@/services/player";
 import { useState } from "react";
 import { Cancel, Edit } from "@mui/icons-material";
 
@@ -13,10 +17,14 @@ function PlayerAttributesAndSkills() {
   const queryClient = useQueryClient();
   const [editable, setIsEditable] = useState(false);
 
-  const { data: playerData, isLoading } = useQuery("playerData", getPlayerData);
-  const { mutateAsync: updatePlayerData } = useMutation(savePlayerData, {
+  const { data: playerData, isLoading } = useQuery({
+    queryKey: [PLAYER_DATA_QUERY_KEY],
+    queryFn: getPlayerData,
+  });
+  const { mutateAsync: updatePlayerData } = useMutation({
+    mutationFn: savePlayerData,
     onSuccess: () => {
-      queryClient.invalidateQueries("playerData");
+      queryClient.invalidateQueries({ queryKey: [PLAYER_DATA_QUERY_KEY] });
     },
   });
 

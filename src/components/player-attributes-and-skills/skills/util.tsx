@@ -1,6 +1,8 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, IconButton, Typography } from "@mui/material";
 import { PlayerAttributes } from "../../../services/player/types";
 import { Skill } from "../../../services/player/types";
+import { isBaseSkill } from "./constants";
+import { CloseOutlined } from "@mui/icons-material";
 
 export function calculateModifier(
   skill: Skill,
@@ -42,8 +44,9 @@ export function createSkill(
   skill: Skill,
   attributes: PlayerAttributes,
   level: number,
-  onSkillClick: (name: string) => void,
-  editable: boolean
+  handleSkillClick: (name: string) => void,
+  editable: boolean,
+  handleRemoveSkill: (name: string) => void
 ) {
   const value = calculateModifier(skill, attributes, level);
   return (
@@ -51,12 +54,21 @@ export function createSkill(
       item
       xs={12}
       key={skill.name}
-      style={{ cursor: editable ? "pointer" : "not-allowed" }}
+      style={{
+        cursor: editable ? "pointer" : "not-allowed",
+        display: "flex",
+        alignItems: "center",
+      }}
     >
-      <Typography variant="body1" onClick={() => onSkillClick(skill.name)}>
+      <Typography variant="body1" onClick={() => handleSkillClick(skill.name)}>
         {skill.name}: {value}{" "}
         {skill.proficiency !== "Untrained" ? `(${skill.proficiency})` : ""}
       </Typography>
+      {!isBaseSkill(skill) && editable && (
+        <IconButton onClick={() => handleRemoveSkill(skill.name)}>
+          <CloseOutlined />
+        </IconButton>
+      )}
     </Grid>
   );
 }

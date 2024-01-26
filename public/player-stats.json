@@ -5,7 +5,7 @@
   "background": "Soldier",
   "class": "Warrior",
   "attributes": {
-    "STR": 18,
+    "STR": 19,
     "DEX": 10,
     "CON": 13,
     "INT": 12,
@@ -26,7 +26,7 @@
     {
       "name": "Athletics",
       "attribute": "STR",
-      "proficiency": "Untrained"
+      "proficiency": "Expert"
     },
     {
       "name": "Crafting",
@@ -36,7 +36,7 @@
     {
       "name": "Deception",
       "attribute": "CHA",
-      "proficiency": "Master"
+      "proficiency": "Legendary"
     },
     {
       "name": "Diplomacy",
@@ -91,6 +91,16 @@
     {
       "name": "Thievery",
       "attribute": "DEX",
+      "proficiency": "Untrained"
+    },
+    {
+      "name": "Super strong",
+      "attribute": "STR",
+      "proficiency": "Expert"
+    },
+    {
+      "name": "double strong",
+      "attribute": "STR",
       "proficiency": "Untrained"
     }
   ],
