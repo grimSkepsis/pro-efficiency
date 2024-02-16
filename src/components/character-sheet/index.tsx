@@ -1,7 +1,7 @@
 "use client";
 import PlayerAttributesAndSkills from "../player-attributes-and-skills";
 import { PlayerData } from "@/services/player/types";
-import { getPlayerData } from "@/services/player";
+import { getCharacterData } from "@/services/player";
 import { Typography } from "@mui/material";
 
 import Image from "next/image";
@@ -13,7 +13,7 @@ type CharacterSheetProps = {
 export function CharacterSheet({}: CharacterSheetProps) {
   const { data: playerData } = useQuery({
     queryKey: ["playerData"],
-    queryFn: getPlayerData,
+    queryFn: getCharacterData,
   });
 
   return (
