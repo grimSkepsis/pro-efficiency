@@ -1,135 +1,135 @@
 {
-  "level": 1,
-  "name": "John Doe",
-  "race": "Human",
-  "background": "Soldier",
-  "class": "Warrior",
   "attributes": {
-    "STR": 19,
-    "DEX": 10,
+    "CHA": 8,
     "CON": 13,
+    "DEX": 10,
     "INT": 12,
-    "WIS": 10,
-    "CHA": 8
+    "STR": 19,
+    "WIS": 10
   },
+  "background": "Soldier",
   "baseSkills": [
     {
-      "name": "Acrobatics",
       "attribute": "DEX",
+      "name": "Acrobatics",
       "proficiency": "Master"
     },
     {
+      "attribute": "INT",
       "name": "Arcana",
-      "attribute": "INT",
       "proficiency": "Expert"
     },
     {
-      "name": "Athletics",
       "attribute": "STR",
-      "proficiency": "Expert"
+      "name": "Athletics",
+      "proficiency": "Master"
     },
     {
-      "name": "Crafting",
       "attribute": "INT",
+      "name": "Crafting",
       "proficiency": "Trained"
     },
     {
-      "name": "Deception",
       "attribute": "CHA",
+      "name": "Deception",
       "proficiency": "Legendary"
     },
     {
-      "name": "Diplomacy",
       "attribute": "CHA",
+      "name": "Diplomacy",
       "proficiency": "Trained"
     },
     {
-      "name": "Intimidation",
       "attribute": "CHA",
+      "name": "Intimidation",
       "proficiency": "Untrained"
     },
     {
-      "name": "Medicine",
       "attribute": "WIS",
+      "name": "Medicine",
       "proficiency": "Trained"
     },
     {
-      "name": "Nature",
       "attribute": "WIS",
+      "name": "Nature",
       "proficiency": "Expert"
     },
     {
-      "name": "Occultism",
       "attribute": "INT",
+      "name": "Occultism",
       "proficiency": "Untrained"
     },
     {
-      "name": "Performance",
       "attribute": "CHA",
+      "name": "Performance",
       "proficiency": "Trained"
     },
     {
-      "name": "Religion",
       "attribute": "WIS",
+      "name": "Religion",
       "proficiency": "Master"
     },
     {
-      "name": "Society",
       "attribute": "INT",
+      "name": "Society",
       "proficiency": "Trained"
     },
     {
+      "attribute": "DEX",
       "name": "Stealth",
-      "attribute": "DEX",
       "proficiency": "Untrained"
     },
     {
-      "name": "Survival",
       "attribute": "WIS",
+      "name": "Survival",
       "proficiency": "Trained"
     },
     {
-      "name": "Thievery",
       "attribute": "DEX",
+      "name": "Thievery",
       "proficiency": "Untrained"
     },
     {
-      "name": "Super strong",
       "attribute": "STR",
+      "name": "Super strong",
       "proficiency": "Expert"
     },
     {
-      "name": "double strong",
       "attribute": "STR",
+      "name": "double strong",
       "proficiency": "Untrained"
     }
   ],
+  "class": "Warrior",
   "classSkills": [
     {
-      "name": "Martial Weapons",
       "attribute": "STR",
+      "name": "Martial Weapons",
       "proficiency": "Trained"
     }
   ],
+  "level": 1,
+  "name": "John Doe",
   "perception": {
-    "name": "Perception",
     "attribute": "WIS",
+    "name": "Perception",
     "proficiency": "Trained"
   },
+  "race": "Human",
   "saves": [
     {
-      "name": "Fortitude",
       "attribute": "CON",
+      "name": "Fortitude",
       "proficiency": "Trained"
     },
     {
-      "name": "Reflex",
       "attribute": "DEX",
+      "name": "Reflex",
       "proficiency": "Untrained"
     },
     {
-      "name": "Will",
       "attribute": "WIS",
+      "name": "Will",
       "proficiency": "Trained"
     }
   ]

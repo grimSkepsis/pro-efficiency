@@ -1,6 +1,4 @@
 import {
-  API_ROUTES,
-  createInternalRoute,
   createCharacterServiceRoute,
   CHARACTER_SERVICE_ROUTES,
 } from "@/routes";
@@ -22,7 +20,10 @@ export async function getCharacterData(): Promise<CharacterData> {
 export async function saveCharacterData(
   playerData: CharacterData
 ): Promise<void> {
-  return await axios.post(createInternalRoute(API_ROUTES.PLAYER), playerData);
+  return await axios.post(
+    createCharacterServiceRoute(CHARACTER_SERVICE_ROUTES.CHARACTER),
+    playerData
+  );
 }
 
 export const CHARACTER_DATA_QUERY_KEY = "characterData";
