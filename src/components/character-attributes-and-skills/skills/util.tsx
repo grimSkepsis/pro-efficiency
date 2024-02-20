@@ -1,12 +1,12 @@
 import { Grid, IconButton, Typography } from "@mui/material";
-import { PlayerAttributes } from "../../../services/player/types";
-import { Skill } from "../../../services/player/types";
+import { CharacterAttributes } from "../../../services/character/types";
+import { Skill } from "../../../services/character/types";
 import { isBaseSkill } from "./constants";
 import { CloseOutlined } from "@mui/icons-material";
 
 export function calculateModifier(
   skill: Skill,
-  attributes: PlayerAttributes,
+  attributes: CharacterAttributes,
   playerLevel: number
 ): number {
   const attributeValue = attributes[skill.attribute];
@@ -42,7 +42,7 @@ export function calculateAttributeModifier(attributeValue: number): number {
 
 export function createSkill(
   skill: Skill,
-  attributes: PlayerAttributes,
+  attributes: CharacterAttributes,
   level: number,
   handleSkillClick: (name: string) => void,
   editable: boolean,

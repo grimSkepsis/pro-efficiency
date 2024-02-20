@@ -1,23 +1,23 @@
-export type PlayerAttributes = {
+export type CharacterAttributes = {
   [K in Attribute]: number;
 };
 
 export type Attribute = "STR" | "DEX" | "CON" | "INT" | "WIS" | "CHA";
 
-export type PlayerData = {
+export type CharacterData = {
   level: number;
   name: string;
   race: string;
   background: string;
   class: string;
-  attributes: PlayerAttributes;
+  attributes: CharacterAttributes;
   baseSkills: Skill[];
   classSkills: Skill[];
   perception: Skill;
   saves: Skill[];
 };
 
-export type PlayerSkillProficiency = {
+export type CharacterSkillProficiency = {
   name: string;
   proficiency: Proficiency;
 };
@@ -31,4 +31,4 @@ export type Proficiency =
 
 export type Skill = {
   attribute: Attribute;
-} & PlayerSkillProficiency;
+} & CharacterSkillProficiency;

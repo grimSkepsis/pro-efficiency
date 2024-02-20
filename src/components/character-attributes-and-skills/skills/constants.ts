@@ -1,4 +1,4 @@
-import { Attribute, Proficiency, Skill } from "@/services/player/types";
+import { Attribute, Proficiency, Skill } from "@/services/character/types";
 
 export const ATTRIBUTE_ORDER: Attribute[] = [
   "STR",

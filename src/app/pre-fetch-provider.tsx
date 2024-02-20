@@ -1,4 +1,7 @@
-import { PLAYER_DATA_QUERY_KEY, getCharacterData } from "@/services/player";
+import {
+  CHARACTER_DATA_QUERY_KEY,
+  getCharacterData,
+} from "@/services/character";
 import { HydrationProvider } from "./hydration-provider";
 import { getQueryClient } from "./queryClient";
 import { dehydrate } from "@tanstack/react-query";
@@ -11,7 +14,7 @@ export default async function PreFetchProvider({
 }: PreFetchProviderProps) {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery({
-    queryKey: [PLAYER_DATA_QUERY_KEY],
+    queryKey: [CHARACTER_DATA_QUERY_KEY],
     queryFn: getCharacterData,
   });
   const dehydratedState = dehydrate(queryClient);

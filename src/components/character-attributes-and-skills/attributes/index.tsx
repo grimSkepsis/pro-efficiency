@@ -1,11 +1,11 @@
 "use client";
 import React, { ChangeEvent } from "react";
 import { Grid, TextField } from "@mui/material";
-import { PlayerAttributes } from "../../../services/player/types";
+import { CharacterAttributes } from "../../../services/character/types";
 
 type AttributesProps = {
-  attributes: PlayerAttributes;
-  onAttributesChange: (newAttributes: PlayerAttributes) => void;
+  attributes: CharacterAttributes;
+  onAttributesChange: (newAttributes: CharacterAttributes) => void;
   editable?: boolean;
 };
 

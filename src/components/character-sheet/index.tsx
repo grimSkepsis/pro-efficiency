@@ -1,7 +1,7 @@
 "use client";
-import PlayerAttributesAndSkills from "../player-attributes-and-skills";
-import { PlayerData } from "@/services/player/types";
-import { getCharacterData } from "@/services/player";
+import CharacterAttributesAndSkills from "../character-attributes-and-skills";
+import { CharacterData } from "@/services/character/types";
+import { getCharacterData } from "@/services/character";
 import { Typography } from "@mui/material";
 
 import Image from "next/image";
@@ -43,7 +43,7 @@ export function CharacterSheet({}: CharacterSheetProps) {
           <Typography variant="h2">{playerData?.name}</Typography>
         </div>
 
-        <PlayerAttributesAndSkills />
+        <CharacterAttributesAndSkills />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { Grid, IconButton, Input, Typography } from "@mui/material";
-import { Attribute, Skill } from "../../../services/player/types";
-import { PlayerAttributes } from "../../../services/player/types";
+import { Attribute, Skill } from "../../../services/character/types";
+import { CharacterAttributes } from "../../../services/character/types";
 import { calculateAttributeModifier, createSkill } from "./util";
 import { ATTRIBUTE_ORDER, PROFICIENCY_LEVELS } from "./constants";
 import { Add } from "@mui/icons-material";
@@ -8,7 +8,7 @@ import { useState } from "react";
 
 type SkillsProps = {
   skills: Skill[];
-  attributes: PlayerAttributes;
+  attributes: CharacterAttributes;
   level: number;
   onSkillsChange: (newSkills: Skill[]) => void;
   editable?: boolean;

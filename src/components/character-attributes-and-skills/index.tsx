@@ -1,51 +1,51 @@
 "use client";
 import { Grid, Box, IconButton, Typography } from "@mui/material";
-import { PlayerData, Skill } from "../../services/player/types";
-import { PlayerAttributes } from "../../services/player/types";
+import { CharacterData, Skill } from "../../services/character/types";
+import { CharacterAttributes } from "../../services/character/types";
 import Attributes from "./attributes";
 import Skills from "./skills";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  PLAYER_DATA_QUERY_KEY,
-  getPlayerData,
-  savePlayerData,
-} from "@/services/player";
+  CHARACTER_DATA_QUERY_KEY,
+  getCharacterData,
+  saveCharacterData,
+} from "@/services/character";
 import { useState } from "react";
 import { Cancel, Edit } from "@mui/icons-material";
 
-function PlayerAttributesAndSkills() {
+function CharacterAttributesAndSkills() {
   const queryClient = useQueryClient();
   const [editable, setIsEditable] = useState(false);
 
-  const { data: playerData, isLoading } = useQuery({
-    queryKey: [PLAYER_DATA_QUERY_KEY],
-    queryFn: getPlayerData,
+  const { data: characterData, isLoading } = useQuery({
+    queryKey: [CHARACTER_DATA_QUERY_KEY],
+    queryFn: getCharacterData,
   });
   const { mutateAsync: updatePlayerData } = useMutation({
-    mutationFn: savePlayerData,
+    mutationFn: saveCharacterData,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [PLAYER_DATA_QUERY_KEY] });
+      queryClient.invalidateQueries({ queryKey: [CHARACTER_DATA_QUERY_KEY] });
     },
   });
 
-  async function handleAttributesChange(newAttributes: PlayerAttributes) {
+  async function handleAttributesChange(newAttributes: CharacterAttributes) {
     const newPlayerData = {
-      ...playerData,
+      ...characterData,
       attributes: newAttributes,
-    } as PlayerData;
+    } as CharacterData;
     await updatePlayerData(newPlayerData);
   }
 
   async function handleSkillsChange(newSkills: Skill[]) {
     const newPlayerData = {
-      ...playerData,
+      ...characterData,
       baseSkills: newSkills,
-    } as PlayerData;
+    } as CharacterData;
     await updatePlayerData(newPlayerData);
   }
   if (isLoading) return <div>Loading...</div>;
 
-  const { baseSkills, attributes, level } = playerData as PlayerData;
+  const { baseSkills, attributes, level } = characterData as CharacterData;
 
   function onToggleEdit() {
     setIsEditable(!editable);
@@ -83,4 +83,4 @@ function PlayerAttributesAndSkills() {
   );
 }
 
-export default PlayerAttributesAndSkills;
+export default CharacterAttributesAndSkills;

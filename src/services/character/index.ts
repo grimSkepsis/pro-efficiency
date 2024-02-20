@@ -4,10 +4,10 @@ import {
   createCharacterServiceRoute,
   CHARACTER_SERVICE_ROUTES,
 } from "@/routes";
-import { PlayerData } from "./types";
+import { CharacterData } from "./types";
 import axios from "axios";
 
-export async function getCharacterData(): Promise<PlayerData> {
+export async function getCharacterData(): Promise<CharacterData> {
   const resp = await axios.get(
     createCharacterServiceRoute(CHARACTER_SERVICE_ROUTES.CHARACTER),
     {
@@ -19,8 +19,10 @@ export async function getCharacterData(): Promise<PlayerData> {
   return resp.data;
 }
 
-export async function savePlayerData(playerData: PlayerData): Promise<void> {
+export async function saveCharacterData(
+  playerData: CharacterData
+): Promise<void> {
   return await axios.post(createInternalRoute(API_ROUTES.PLAYER), playerData);
 }
 
-export const PLAYER_DATA_QUERY_KEY = "playerData";
+export const CHARACTER_DATA_QUERY_KEY = "characterData";
